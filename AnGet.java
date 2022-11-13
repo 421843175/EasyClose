@@ -50,20 +50,16 @@ public class AnGet {
             }
         }
         for (Field f : ars.keySet()) {
-//            Close p = f.getDeclaredAnnotation(Close.class);
+//         Close p = f.getDeclaredAnnotation(Close.class);
             Class fgc = f.getType();
-            //fgc得到原类型的反射类
-          //实例化在这里不需要
            // Object o = fgc.newInstance();
 
-            //获取属性值
             Object o1 = f.get(ars.get(f).newInstance());
             if(o1!=null) {
-                //fgc.newInstance();  实例化得到对象
                 Method fc = fgc.getDeclaredMethod("close");
                 fc.setAccessible(true);
                 fc.invoke(o1);
-                System.out.println(fc + "已经成功关闭");
+                System.out.println(fc + "宸茬粡鎴愬姛鍏抽棴");
             }
         }
 
