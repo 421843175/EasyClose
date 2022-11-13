@@ -1,4 +1,4 @@
-package mvc.hou.jupiterAPIclose;
+package mvc.hou;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -6,13 +6,22 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class AnGet {
-
-    Class<AnGet> t = AnGet.class;
-   public static void main(String[] args) {
-        new AnGet();
+public class EasyClose {
+//    public static void main(String[] args) {
+//        new AnGet();
+//    }
+    Class<EasyClose> t = EasyClose.class;
+    String gc;
+    public EasyClose(String gc){
+        this.gc=gc;
+        ArrayList<String> ar=saomiao();
+        try {
+            fs(ar);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-    public AnGet(){
+    public EasyClose(){
         ArrayList<String> ar=saomiao();
         try {
             fs(ar);
@@ -26,8 +35,8 @@ public class AnGet {
 
     public ArrayList<String> saomiao(){
         ArrayList<String> ar=new ArrayList<>();
-        String s = new File("").getAbsolutePath() + "\\src\\" + t.getPackage().getName().replace(".", "\\");
-//        System.out.println(s);
+        String s =  gc+"\\"+t.getPackage().getName().replace(".", "\\");
+        //        System.out.println(s);
         File f=new File(s);
         for (String s1 : f.list()) {
             if(s1.indexOf("java")!=-1)
@@ -35,6 +44,8 @@ public class AnGet {
                 s1= s1.replace(".java","");
                 ar.add(packPath()+"."+s1);
             }
+
+
 
         }
         return ar;
@@ -44,6 +55,7 @@ public class AnGet {
         HashMap<Field,Class> ars=new HashMap();
         for (String s : ar) {
             Class<?> c = Class.forName(s);
+
             Field[] f = c.getDeclaredFields();
             for (Field field : f) {
                 if(field.isAnnotationPresent(Close.class))
@@ -53,7 +65,7 @@ public class AnGet {
             }
         }
         for (Field f : ars.keySet()) {
-//         Close p = f.getDeclaredAnnotation(Close.class);
+//            Close p = f.getDeclaredAnnotation(Close.class);
             Class fgc = f.getType();
            // Object o = fgc.newInstance();
 
