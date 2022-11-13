@@ -9,6 +9,9 @@ import java.util.HashMap;
 public class AnGet {
 
     Class<AnGet> t = AnGet.class;
+   public static void main(String[] args) {
+        new AnGet();
+    }
     public AnGet(){
         ArrayList<String> ar=saomiao();
         try {
