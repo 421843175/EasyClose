@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public class EasyClose {
 //    public static void main(String[] args) {
-//        new AnGet();
+//        new EasyClose();
 //    }
     Class<EasyClose> t = EasyClose.class;
     String gc;
